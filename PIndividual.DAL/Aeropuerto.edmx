@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AeropuertoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aviones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Asientos" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paises/Destino/Aeropuerto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_vuelo" Type="int" Nullable="false" />
+          <Property Name="Paises" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Destino" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aeropuerto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tarifa" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pasajeros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_vuelo" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Visa" Type="int" Nullable="false" />
+          <Property Name="Pasaporte" Type="int" />
+        </EntityType>
+        <EntityType Name="Vuelos">
+          <Key>
+            <PropertyRef Name="Id_vuelo" />
+          </Key>
+          <Property Name="Id_vuelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Escala" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Duracion" Type="int" Nullable="false" />
+          <Property Name="Round_trip" Type="bit" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Paises/Destino/Aeropuerto_Vuelos">
+          <End Role="Vuelos" Type="Self.Vuelos" Multiplicity="1" />
+          <End Role="Paises/Destino/Aeropuerto" Type="Self.Paises/Destino/Aeropuerto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vuelos">
+              <PropertyRef Name="Id_vuelo" />
+            </Principal>
+            <Dependent Role="Paises/Destino/Aeropuerto">
+              <PropertyRef Name="id_vuelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AeropuertoModelStoreContainer">
+          <EntitySet Name="Aviones" EntityType="Self.Aviones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paises/Destino/Aeropuerto" EntityType="Self.Paises/Destino/Aeropuerto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pasajeros" EntityType="Self.Pasajeros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vuelos" EntityType="Self.Vuelos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Paises/Destino/Aeropuerto_Vuelos" Association="Self.FK_Paises/Destino/Aeropuerto_Vuelos">
+            <End Role="Vuelos" EntitySet="Vuelos" />
+            <End Role="Paises/Destino/Aeropuerto" EntitySet="Paises/Destino/Aeropuerto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AeropuertoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aviones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Asientos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paises_Destino_Aeropuerto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_vuelo" Type="Int32" Nullable="false" />
+          <Property Name="Paises" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Destino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Aeropuerto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tarifa" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Vuelos" Relationship="Self.FK_Paises_Destino_Aeropuerto_Vuelos" FromRole="Paises_Destino_Aeropuerto" ToRole="Vuelos" />
+        </EntityType>
+        <EntityType Name="Pasajeros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Id_vuelo" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Visa" Type="Int32" Nullable="false" />
+          <Property Name="Pasaporte" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Vuelos">
+          <Key>
+            <PropertyRef Name="Id_vuelo" />
+          </Key>
+          <Property Name="Id_vuelo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Escala" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Duracion" Type="Int32" Nullable="false" />
+          <Property Name="Round_trip" Type="Boolean" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Paises_Destino_Aeropuerto" Relationship="Self.FK_Paises_Destino_Aeropuerto_Vuelos" FromRole="Vuelos" ToRole="Paises_Destino_Aeropuerto" />
+        </EntityType>
+        <Association Name="FK_Paises_Destino_Aeropuerto_Vuelos">
+          <End Role="Vuelos" Type="Self.Vuelos" Multiplicity="1" />
+          <End Role="Paises_Destino_Aeropuerto" Type="Self.Paises_Destino_Aeropuerto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vuelos">
+              <PropertyRef Name="Id_vuelo" />
+            </Principal>
+            <Dependent Role="Paises_Destino_Aeropuerto">
+              <PropertyRef Name="id_vuelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AeropuertoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aviones" EntityType="Self.Aviones" />
+          <EntitySet Name="Paises_Destino_Aeropuerto" EntityType="Self.Paises_Destino_Aeropuerto" />
+          <EntitySet Name="Pasajeros" EntityType="Self.Pasajeros" />
+          <EntitySet Name="Vuelos" EntityType="Self.Vuelos" />
+          <AssociationSet Name="FK_Paises_Destino_Aeropuerto_Vuelos" Association="Self.FK_Paises_Destino_Aeropuerto_Vuelos">
+            <End Role="Vuelos" EntitySet="Vuelos" />
+            <End Role="Paises_Destino_Aeropuerto" EntitySet="Paises_Destino_Aeropuerto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AeropuertoModelStoreContainer" CdmEntityContainer="AeropuertoEntities">
+          <EntitySetMapping Name="Aviones">
+            <EntityTypeMapping TypeName="AeropuertoModel.Aviones">
+              <MappingFragment StoreEntitySet="Aviones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Asientos" ColumnName="Asientos" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises_Destino_Aeropuerto">
+            <EntityTypeMapping TypeName="AeropuertoModel.Paises_Destino_Aeropuerto">
+              <MappingFragment StoreEntitySet="Paises/Destino/Aeropuerto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_vuelo" ColumnName="id_vuelo" />
+                <ScalarProperty Name="Paises" ColumnName="Paises" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="Aeropuerto" ColumnName="Aeropuerto" />
+                <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pasajeros">
+            <EntityTypeMapping TypeName="AeropuertoModel.Pasajeros">
+              <MappingFragment StoreEntitySet="Pasajeros">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id_vuelo" ColumnName="Id_vuelo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Visa" ColumnName="Visa" />
+                <ScalarProperty Name="Pasaporte" ColumnName="Pasaporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vuelos">
+            <EntityTypeMapping TypeName="AeropuertoModel.Vuelos">
+              <MappingFragment StoreEntitySet="Vuelos">
+                <ScalarProperty Name="Id_vuelo" ColumnName="Id_vuelo" />
+                <ScalarProperty Name="Escala" ColumnName="Escala" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+                <ScalarProperty Name="Round_trip" ColumnName="Round_trip" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
