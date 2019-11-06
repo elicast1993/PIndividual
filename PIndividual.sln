@@ -4,12 +4,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIndividual.UI", "PIndividual.UI\PIndividual.UI.csproj", "{87BADC45-913F-48FE-93B9-8BE9EBD84690}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B7D7C470-6B52-4927-8F2F-B910143D7E03} = {B7D7C470-6B52-4927-8F2F-B910143D7E03}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIndividual.ConsolaPrueba", "PIndividual.ConsolaPrueba\PIndividual.ConsolaPrueba.csproj", "{FA0300EF-78A0-45CD-A391-9E75AFF9942D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIndividual.BL", "PIndividual.BL\PIndividual.BL.csproj", "{2AF10B26-0BAC-4FA8-8608-9A45BC7515AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIndividual.DAL", "PIndividual.DAL\PIndividual.DAL.csproj", "{B48D9B11-159B-4BA9-A172-22949CFF8570}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Pindividual.CM.WCF", "Pindividual.CM.WCF\", "{B7D7C470-6B52-4927-8F2F-B910143D7E03}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54707"
+		Debug.AspNetCompiler.PhysicalPath = "Pindividual.CM.WCF\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54707\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54707"
+		Release.AspNetCompiler.PhysicalPath = "Pindividual.CM.WCF\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54707\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "54707"
+		SlnRelativePath = "Pindividual.CM.WCF\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +58,10 @@ Global
 		{B48D9B11-159B-4BA9-A172-22949CFF8570}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B48D9B11-159B-4BA9-A172-22949CFF8570}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B48D9B11-159B-4BA9-A172-22949CFF8570}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7D7C470-6B52-4927-8F2F-B910143D7E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7D7C470-6B52-4927-8F2F-B910143D7E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7D7C470-6B52-4927-8F2F-B910143D7E03}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7D7C470-6B52-4927-8F2F-B910143D7E03}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
